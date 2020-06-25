@@ -10,7 +10,7 @@ But in the context of an ISP Perl was certainly still the language of choice for
 
 So Perl it was, "enlightened" Perl to be precise. The term was coined to separate the community from the history of being a "write-only" scripting language, literally being only one character away from peril.
 
-Using a modern MVC framework, test-driven development thanks to dependency injection and a "postmodern" object sytem was really up to snuff, even by today's standards.
+Using it the englightened way with a modern MVC framework, test-driven development thanks to dependency injection and a "postmodern" object sytem was really up to snuff, even by today's standards.
 
 But under the hood it was plain old perilous Perl. And no one was stopping you from doing something like this:
 
@@ -32,8 +32,7 @@ So it writes "Just another Perl hacker", but how? I'm writing this over ten year
 
 Let's take this apart. We've got a list @S:
 
-         @S = qw(2uF7t juvyr 6PF5 cevag fuvsg fcyvg Pq6 Z5r fho beq Z5rO6O
-        100 39 10 pue P7YZ5r bpg);
+         @S = qw(2uF7t juvyr 6PF5 cevag fuvsg fcyvg Pq6 Z5r fho beq Z5rO6O 100 39 10 pue P7YZ5r bpg);
 
 And a string $S:
 
@@ -54,7 +53,7 @@ And then there's an eval of $S to make it do something:
 
        eval $S
 
-Look's like the only interesting part is the loop. Let's have a closer look:
+Look's like the only interesting part is the loop. Let's have a closer look.
 We're iterating over the indices of the list @S, which has 17 elements.
 So we're actually doing:
 
@@ -70,7 +69,7 @@ Ok we're iterating over the letters 'a' to 'q' and we're doing some kind of repl
 
         $S = ~s/\b$s\b/$S[$_]/g;
 
-with on one hand $s being a letter between 'a' and 'q' and on the other hand $_ being the corresponding index in the list @S. Looking up \b: It's a word boundary: It matches everywhere between a \w word character and a \W non-word character. This word boundary thing makes sure we're not replacing characters in already replaced parts.
+with on one hand $s being a letter between 'a' and 'q' and on the other hand $_ being the corresponding index in the list @S. Looking up \b I found out it's matching a word boundary: It matches everywhere between a \w word character and a \W non-word character. This word boundary thing makes sure we're not replacing characters in already replaced parts.
 
 So in our string we're first replacing "a" with "2uF7t", "b" with "juvyr", ... and so on. Once we're done $S looks like this:
 
@@ -144,16 +143,16 @@ So our arguments look like:
 
 Octal 116 in decimal is 78 which translates to 'J' and octal 165 is decimal 117 which represents the character 'u'. "<2h" is transformed to "Ju", "F7g" is translated to "st", and so on ...
 
-Looking a bit closer, it's not all that magical. In the first statement we divide our buffered value by 10. As long as the value is smaller than 100, the result of the division will be smaller than 10. So it will only occupy one digit. And by multiplying the second element by 10 we exactly free up that one decimal place. The same idea shows up in the second statement: by multiplying the first decimal place of our buffered value by 100 we free up the two digits for the third value, as long as this third value is smaller than 100. As the weird string and the whole program was specifically crafted for the one purpose of printing out "Just another Perl hacker" it's not a suprise that these "< 100" conditions hold true.
+Looking a bit closer, it's not all that magical. In the first statement we divide our buffered value by 10. As long as the value is smaller than 100, the result of the division will be smaller than 10. So it will only occupy one digit. And by multiplying the second element by 10 we exactly free up that one decimal place. The same idea shows up in the second statement: by multiplying the first decimal place of our buffered value by 100 we free up the two digits for the third value, as long as this third value is smaller than 100. As the weird string and the whole program was specifically crafted for the one purpose of printing "Just another Perl hacker" it's no suprise that these "< 100" conditions hold true.
 
 What was I thinking?
 --------------------
 
 I only remember partly what the thought process was. I do remember fondly spending lots of time fiddling arround to find something that works. Especially getting the formatting right was quite tricky. You'll probably noticed that it's not totally code golfed to death, just in oder to make it line up nicely. You see, it's not about efficiency. It's all about beauty, obfuscation and weirdness.
 
-It guess the inner part of the Matryoshka code was inspired by base64 encoding. Transforming characters but not using the character borders to do so, seemed very appealing to me. Instead of doing so on a bit level I went with some crazy aritmetic, which in the end had somehow similar effects.
+I guess the inner part of the Matryoshka code was inspired by base64 encoding. Transforming characters but not using the character borders to do so, seemed very appealing to me. Instead of doing so on a bit level I went with some crazy aritmetic, which in the end had somehow similar effects.
 
-The outer part is surely inspired by Dean Edward's javascript packer. I remember finishing the inner part and thinking that it's not obscure enough. Any experienced Perl hacker would easily see what's going on. As the result of the program was a given anyway, I really wanted to make sure that the idea behind it could not be understood at a glance. The packer did just that as it was used for obfuscation of javascript and I already had hacked it of get a hold of some code that was garbled with it. It's no surprise that the packer got out of style quickly. It was neither saving bandwidth nor provided it protection against anyone who would be able to understand enough javascript to be interested in the unobfuscated code in the first place. So it's clearly bogus, but: It's a brilliant piece of code and I stole the idea to hide my ways in the japh.
+The outer part is surely inspired by Dean Edward's javascript packer. I remember finishing the inner part and thinking that it's not obscure enough. Any experienced Perl hacker would easily see what's going on. As the result of the program was a given anyway, I really wanted to make sure that the idea behind it could not be understood at a glance. The packer did just that as it was used for obfuscation of javascript and I already had hacked it to get a hold of some code that was garbled with it. It's no surprise that the packer got out of style quickly. It was neither saving bandwidth nor provided protection against anyone who would be able to understand enough javascript to be interested in the unobfuscated code in the first place. So it's clearly bogus, but: It's a brilliant piece of code and I stole the idea to hide my ways in the japh.
 
 Sprinkle it with a bit of ROT13 cipher. Serve cold like revenge. Enjoy.
 
