@@ -69,7 +69,7 @@ Ok, we're iterating over the letters 'a' to 'q' and we're doing some kind of rep
 
         $S = ~s/\b$s\b/$S[$_]/g;
 
-with the search part $s being a letter between 'a' and 'q', replacing it the $respective element of the list @S . Looking up \b I found out it's matching a word boundary: It matches everywhere between a \w word character and a \W non-word character. This word boundary thing makes sure we're not replacing characters in already replaced parts. (At least it looks like this was the intention here. It's certainly not perfect. The character sequence "Z5r" is suspiciously common in our list ... nevermind.)
+with the search part $s being a letter between 'a' and 'q', replacing it with the $respective element of the list @S . Looking up \b I found out it's matching a word boundary: It matches everywhere between a \w word character and a \W non-word character. This word boundary thing makes sure we're not replacing characters in already replaced parts. (At least it looks like this was the intention here. It's certainly not perfect. The character sequence "Z5r" is suspiciously common in our list ... nevermind.)
 
 So in our string we're first replacing "a" with "2uF7t", "b" with "juvyr", ... and so on. Once we're done $S looks like this:
 
@@ -103,7 +103,7 @@ The subroutine appears to shift an element out of some global, yet unknown list 
 
 It returns whatever value we get minus 39. We've got no clue why. (And while you're pondering: Think about side effects for second. Do you see the i in peril? Great power comes with great responsibility.)
 
-Luckily next thing is the definition of the list @|, we were just wondering about. It's just a weird string split into a list of single characters. We knew it!
+Luckily the next thing is the definition of the list @|, we were just wondering about. It's just a weird string split into a list of single characters. We knew it!
 
         @| = split //, '<2hF7g(+Pd6`P7YZ5e(+;Z5eO6O(6PF5\Z5e';
 
@@ -150,9 +150,8 @@ What was I thinking?
 
 I only remember partly what the thought process was. I do remember fondly spending lots of time fiddling arround to find something that works. Especially getting the formatting right was quite tricky. You'll probably noticed that it's not totally code golfed to death, just in order to make it line up nicely. You see, it's not about efficiency. It's all about beauty, obfuscation and weirdness.
 
-I guess the inner part of the Matryoshka code was inspired by base64 encoding. Transforming characters, but not using the character borders to do so, seemed very appealing to me. Instead of doing so on a bit level I went with some crazy arithmetic, which in the end had somehow similar effects.
+I guess the inner part of the Matryoshka code was inspired by base64 encoding. Transforming characters, but not using the character borders to do so, seemed very appealing to me. Instead of doing so on a bit level I went with some crazy arithmetic on ASCII codes, which in the end had somehow similar effects.
 
-The outer part is surely inspired by Dean Edward's javascript packer. I remember finishing the inner part and thinking that it's not obscure enough. Any experienced Perl hacker would easily see what's going on. As the result of the program was a given anyway, I really wanted to make sure that the idea behind it could not be understood at a glance. The packer did just that as it was used for obfuscation of javascript and I already had hacked it to get hold of some code that was garbled with it. It's no surprise that the packer got out of style quickly. It was neither saving bandwidth nor provided protection against anyone who would be able to understand enough javascript to be interested in the unobfuscated code in the first place. So it's clearly bogus, but: It's a brilliant piece of code and I stole the idea to hide my ways in the japh.
+The outer part is surely inspired by Dean Edward's javascript packer. I remember finishing the inner part and thinking that it's not obscure enough. Any experienced Perl hacker would easily see what's going on. As the result of the program was a given anyway, I really wanted to make sure that the idea behind it could not be understood at a glance. The packer did just that as it was used for obfuscation of javascript and I already had hacked it to get hold of some code that has been garbled with it. It's no surprise that the packer got out of style quickly. It was neither saving bandwidth nor provided protection against anyone who would be able to understand enough javascript to be interested in the unobfuscated code in the first place. So it's clearly bogus, but: It's a brilliant piece of code and I stole the idea to hide my ways in the japh.
 
 Sprinkle it with a bit of ROT13 cipher. Serve cold like revenge. Enjoy.
-
