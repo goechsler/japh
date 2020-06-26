@@ -53,7 +53,7 @@ And then there's an eval of $S to make it do something:
 
        eval $S
 
-Look's like the only interesting part is the loop. Let's have a closer look.
+Looks like the only interesting part is the loop. Let's have a closer look.
 We're iterating over the indices of the list @S, which has 17 elements.
 So we're actually doing:
 
@@ -63,13 +63,13 @@ In the first iteration of the loop $_ is 0, so
 
        $s = chr(97 + 0);
 
-Looking up character 97 in an ASCII table $s is the letter 'a'. (Be honest now, did you really know that or do you just think you remember it, like I do?) The last loop iteration would be character 97 + 16 = 113, which is a the letter 'q'.
+Looking up character 97 in an ASCII table it turns out $s is set to the letter 'a'. (Be honest now, did you really know that or do you just think you remember it, like I do?) The last loop iteration would be character 97 + 16 = 113, which is the letter 'q'.
 
-Ok we're iterating over the letters 'a' to 'q' and we're doing some kind of replacement operation in our string $S:
+Ok, we're iterating over the letters 'a' to 'q' and we're doing some kind of replacement operation in our string $S:
 
         $S = ~s/\b$s\b/$S[$_]/g;
 
-with on one hand $s being a letter between 'a' and 'q' and on the other hand $_ being the corresponding index in the list @S. Looking up \b I found out it's matching a word boundary: It matches everywhere between a \w word character and a \W non-word character. This word boundary thing makes sure we're not replacing characters in already replaced parts.
+with the search part $s being a letter between 'a' and 'q', replacing it the $respective element of the list @S . Looking up \b I found out it's matching a word boundary: It matches everywhere between a \w word character and a \W non-word character. This word boundary thing makes sure we're not replacing characters in already replaced parts. (At least it looks like this was the intention here. It's certainly not perfect. The character sequence "Z5r" is suspiciously common in our list ... nevermind.)
 
 So in our string we're first replacing "a" with "2uF7t", "b" with "juvyr", ... and so on. Once we're done $S looks like this:
 
@@ -148,11 +148,11 @@ Looking a bit closer, it's not all that magical. In the first statement we divid
 What was I thinking?
 --------------------
 
-I only remember partly what the thought process was. I do remember fondly spending lots of time fiddling arround to find something that works. Especially getting the formatting right was quite tricky. You'll probably noticed that it's not totally code golfed to death, just in oder to make it line up nicely. You see, it's not about efficiency. It's all about beauty, obfuscation and weirdness.
+I only remember partly what the thought process was. I do remember fondly spending lots of time fiddling arround to find something that works. Especially getting the formatting right was quite tricky. You'll probably noticed that it's not totally code golfed to death, just in order to make it line up nicely. You see, it's not about efficiency. It's all about beauty, obfuscation and weirdness.
 
-I guess the inner part of the Matryoshka code was inspired by base64 encoding. Transforming characters but not using the character borders to do so, seemed very appealing to me. Instead of doing so on a bit level I went with some crazy arithmetic, which in the end had somehow similar effects.
+I guess the inner part of the Matryoshka code was inspired by base64 encoding. Transforming characters, but not using the character borders to do so, seemed very appealing to me. Instead of doing so on a bit level I went with some crazy arithmetic, which in the end had somehow similar effects.
 
-The outer part is surely inspired by Dean Edward's javascript packer. I remember finishing the inner part and thinking that it's not obscure enough. Any experienced Perl hacker would easily see what's going on. As the result of the program was a given anyway, I really wanted to make sure that the idea behind it could not be understood at a glance. The packer did just that as it was used for obfuscation of javascript and I already had hacked it to get a hold of some code that was garbled with it. It's no surprise that the packer got out of style quickly. It was neither saving bandwidth nor provided protection against anyone who would be able to understand enough javascript to be interested in the unobfuscated code in the first place. So it's clearly bogus, but: It's a brilliant piece of code and I stole the idea to hide my ways in the japh.
+The outer part is surely inspired by Dean Edward's javascript packer. I remember finishing the inner part and thinking that it's not obscure enough. Any experienced Perl hacker would easily see what's going on. As the result of the program was a given anyway, I really wanted to make sure that the idea behind it could not be understood at a glance. The packer did just that as it was used for obfuscation of javascript and I already had hacked it to get hold of some code that was garbled with it. It's no surprise that the packer got out of style quickly. It was neither saving bandwidth nor provided protection against anyone who would be able to understand enough javascript to be interested in the unobfuscated code in the first place. So it's clearly bogus, but: It's a brilliant piece of code and I stole the idea to hide my ways in the japh.
 
 Sprinkle it with a bit of ROT13 cipher. Serve cold like revenge. Enjoy.
 
