@@ -101,7 +101,7 @@ We see the definition of a subroutine with the inconspicuous name "_":
 
 The subroutine appears to shift an element out of some global, yet unknown list @| and calculates the ASCII value of the shifted element, which somehow suggests the element in question is a single ASCII character.
 
-It returns whatever value we get minus 39. We've got no clue why. (And while you're pondering: Think about side effects for second. Do you see the i in peril? Great power comes with great responsibility.)
+It returns whatever value we get minus 39. We've got no clue why. (And while you're pondering: Think about side effects for a second. Do you see the i in peril? Great power comes with great responsibility.)
 
 Luckily the next thing is the definition of the list @|, we were just wondering about. It's just a weird string split into a list of single characters. We knew it!
 
