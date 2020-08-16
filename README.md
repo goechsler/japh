@@ -28,7 +28,7 @@ I used to have this as a nerdy email signature for a while. You know, back when 
 How it does what it does
 ------------------------
 
-So it writes "Just another Perl hacker", but how? I'm writing this over ten years after I made it, so even if I still roughly know what I did, I'm really exited to find out myself.
+So it writes "Just another Perl hacker", but how? I'm writing this over ten years after I made it, so even if I still roughly know what I did, I'm really excited to find out myself.
 
 Let's take this apart. We've got a list @S:
 
