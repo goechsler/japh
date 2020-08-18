@@ -10,7 +10,7 @@ But in the context of an ISP Perl was certainly still the language of choice for
 
 So Perl it was, "enlightened" Perl to be precise. The term was coined to separate the community from the history of being a "write-only" scripting language, literally being only one character away from peril.
 
-Using it the englightened way with a modern MVC framework, test-driven development thanks to dependency injection and a "postmodern" object sytem was really up to snuff, even by todays standards.
+Using it the englightened way with a modern MVC framework, test-driven development thanks to dependency injection and a "postmodern" object sytem was really up to snuff, even by today's standards.
 
 But under the hood it was plain old perilous Perl. And no one was stopping you from doing something like this:
 
