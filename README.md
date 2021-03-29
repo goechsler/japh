@@ -141,7 +141,7 @@ So our arguments look like:
         21/10 + 11 * 10 = 2 + 110 = 112.
         65 + 21 % 10 * 100 = 65 + 1 * 100 = 165
 
-Octal 116 in decimal is 78 which translates to 'J' and octal 165 is decimal 117 which represents the character 'u'. "<2h" is transformed to "Ju", "F7g" is translated to "st", and so on ...
+Octal 112 in decimal is 74 which translates to 'J' and octal 165 is decimal 117 which represents the character 'u'. "<2h" is transformed to "Ju", "F7g" is translated to "st", and so on ...
 
 Looking a bit closer, it's not all that magical. In the first statement we divide our buffered value by 10. As long as the value is smaller than 100, the result of the division will be smaller than 10. So it will only occupy one digit. And by multiplying the second element by 10 we exactly free up that one decimal place. The same idea shows up in the second statement: by multiplying the first decimal place of our buffered value by 100 we free up the two digits for the third value, as long as this third value is smaller than 100. As the weird string and the whole program was specifically crafted for the one purpose of printing "Just another Perl hacker" it's no suprise that these "< 100" conditions hold true.
 
